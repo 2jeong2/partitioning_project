@@ -1,6 +1,6 @@
 # 🎧 Spotify Songs 데이터 파티셔닝 및 인덱싱 성능 최적화
 
----
+
 
 ## 📌 LIST PARTITIONING
 
@@ -64,12 +64,12 @@ PARTITION BY LIST COLUMNS(track_genre) (
 
 ## 🔍 인덱싱 최적화
 
----
+
 자주 사용하는 `track_genre + artists` 조합에 대해 인덱스를 생성하여 **검색 성능을 향상**시켰습니다.
 
 ### 🧠 인덱스란?
 
----
+
 * 📖 **정의**: 책의 목차처럼, 테이블에서 특정 데이터를 빠르게 찾기 위한 **검색 도우미**
   → 전화번호부의 A-Z 색인과 유사한 역할
 
@@ -78,7 +78,7 @@ PARTITION BY LIST COLUMNS(track_genre) (
 
 ## ⚖️ 파티셔닝 vs 인덱스
 
----
+
 
 | 항목        | 🔎 인덱스                      | 📂 파티셔닝                                 |
 | --------- | --------------------------- | --------------------------------------- |
@@ -89,12 +89,12 @@ PARTITION BY LIST COLUMNS(track_genre) (
 
 
 
----
+
 
 
 ## 🔧 인덱스 생성
 
----
+
 <details>
 <summary>인덱스 생성 SQL 보기</summary>
 
@@ -105,12 +105,12 @@ ON spotify_songs_partitioned (track_genre, artists);
 
 </details>
 
----
+
 
 
 ## 🔎 쿼리 예시 및 실행 계획
 
----
+
 <details>
 <summary>예시 쿼리 & EXPLAIN 보기</summary>
 
@@ -136,7 +136,7 @@ LIMIT 10;
 
 ### ✅ 실행 계획 결과
 
----
+
 * `p_pop` 파티션만 스캔
 * 인덱스 `idx_genre_artist` 사용 확인됨
 
@@ -147,7 +147,7 @@ LIMIT 10;
 
 ## ⚡ 성능 비교
 
----
+
 **파티셔닝 및 인덱싱 적용 전후 실행 속도 비교**
 
 ![성능비교](https://github.com/user-attachments/assets/aa84296a-aaab-40bd-8693-b0fab74696ea)
