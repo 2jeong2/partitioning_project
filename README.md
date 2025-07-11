@@ -149,7 +149,7 @@ LIMIT 10;
 * `p_pop` 파티션만 스캔
 * 인덱스 `idx_genre_artist` 사용 확인
 
-![image.png](attachment:bd5911d7-8ea8-4410-a689-3422b36a0cfb:image.png)
+<img width="1148" height="60" alt="image" src="https://github.com/user-attachments/assets/094468c0-0b39-44ce-89e0-0111ee530c98" />
 
 ---
 
@@ -157,7 +157,7 @@ LIMIT 10;
 
 **파티셔닝 및 인덱싱 적용 전후 실행 속도 비교**
 
-![image.png](attachment:52fb7d49-491b-400b-a7c5-5a2cfc7314ea:image.png)
+<img width="501" height="81" alt="image (1)" src="https://github.com/user-attachments/assets/aa84296a-aaab-40bd-8693-b0fab74696ea" />
 
 | 항목  | 적용 전        | 적용 후                        |
 | --- | ----------- | --------------------------- |
