@@ -4,7 +4,7 @@
 
 Spotify 곡 데이터를 `track_genre` 기준으로 **유사한 장르 그룹별 리스트 파티셔닝(List Partitioning)** 하고, 자주 사용하는 `track_genre + artists` 조합에 대해 **인덱스를 생성**하여 **검색 성능을 최적화**하였습니다.
 
----
+
 
 ## 🛠️ 테이블 생성 및 파티셔닝 전략
 
@@ -54,16 +54,16 @@ PARTITION BY LIST COLUMNS(track_genre) (
 
 </details>
 
+---
 ### 자주 사용하는 `track_genre + artists` 조합에 대해 **인덱스를 생성**하여 **검색 성능을 최적화**
 
----
 
-### 🔍 인덱스란?
+#### 🔍 인덱스란?
 
 * **정의**: 책의 목차처럼, 테이블에서 특정 데이터를 빠르게 찾기 위한 **검색 도우미**
   → 전화번호부의 A-Z 색인과 유사한 역할
 
-### 📌 인덱스의 주요 특징
+#### 📌 인덱스의 주요 특징
 
 * ✅ **검색 속도 향상**
 * ✅ **중복 방지**
@@ -71,7 +71,7 @@ PARTITION BY LIST COLUMNS(track_genre) (
 
 ---
 
-## ⚖️ 파티셔닝 vs 인덱스
+#### ⚖️ 파티셔닝 vs 인덱스
 
 | 항목        | 🔎 인덱스                             | 📂 파티셔닝                                  |
 | --------- | ---------------------------------- | ---------------------------------------- |
@@ -82,33 +82,7 @@ PARTITION BY LIST COLUMNS(track_genre) (
 
 
 
-## 🧠 개념 요약
-
-* **파티션**: "어느 **범위를** 볼지" 결정
-* **인덱스**: 그 범위 **안에서 어떻게 빠르게 찾을지** 결정
-
-💡 즉,
-
-> **파티셔닝으로 범위를 줄이고, 인덱스로 그 안에서 빠르게 찾는다!**
-
-
-
-## 🛠️ 인덱스 생성 예시
-
-<details>
-<summary>📌 인덱스 생성 SQL 보기</summary>
-
-```sql
-CREATE INDEX idx_pop_exp
-ON spotify_partitioned (popularity, explicit);
-```
-
-</details>
-
-
-
-
-## 🔍 인덱스 생성
+##### 🔍 인덱스 생성
 
 <details>
 <summary>🔧 인덱스 생성 SQL 보기</summary>
@@ -121,7 +95,7 @@ CREATE INDEX idx_genre_artist ON spotify_songs_partitioned (track_genre, artists
 
 ---
 
-## 🔎 쿼리 예시 및 실행 계획
+##### 🔎 쿼리 예시 및 실행 계획
 
 <details>
 <summary>📝 예시 쿼리 & EXPLAIN 보기</summary>
@@ -144,7 +118,7 @@ LIMIT 10;
 
 </details>
 
-### 🔎 실행 계획 결과
+##### 🔎 실행 계획 결과
 
 * `p_pop` 파티션만 스캔
 * 인덱스 `idx_genre_artist` 사용 확인
@@ -153,7 +127,7 @@ LIMIT 10;
 
 ---
 
-## ⚡ 성능 비교
+##### ⚡ 성능 비교
 
 **파티셔닝 및 인덱싱 적용 전후 실행 속도 비교**
 
